@@ -17,7 +17,7 @@ const QuizPanel = () => {
     const [isAnswered, setIsAnswered] = useState(false);
 
     //Check if user answered properly or not
-    const [userResult, setUserResult] = useState(false);
+    const [userPositiveResult, setUserPositiveResult] = useState(false);
 
     const getRandomCapitalQuestion = () => {
         fetch(`${BASE_URL}?fields=name;capital;flag;numericCode`)
@@ -79,20 +79,25 @@ const QuizPanel = () => {
         }
     }
     const chooseAnswer = (id) =>{
+        if(!isAnswered){
         if(id === correctAnswer.id){
-            setUserResult(true);
+            setUserPositiveResult(true);
         } else{
-            setUserResult(false)
+            setUserPositiveResult(false);
         }
-
+    }
+        setIsAnswered(true);
     }
 
     const renderQuestion = () => {
         setLoading(true)
         getRandomCapitalQuestion();
         handleErrors()
+        setIsAnswered(false)
     }
-
+    const handleSubmitButton = () =>{
+        renderQuestion();
+    }
     useEffect(()=>{
         renderQuestion()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -112,7 +117,11 @@ const QuizPanel = () => {
                     )}
                 </ul>
                 {isAnswered ? (
-                    <button onClick={renderQuestion}>next</button>
+                    userPositiveResult ? (
+                            <button onClick={handleSubmitButton}>next</button>
+                    ) : (
+                        <button onClick={handleSubmitButton}>try again</button>
+                    )
                 ) : null }
         </div>
     )
