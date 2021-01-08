@@ -1,0 +1,12 @@
+body{
+    width: 100vw;
+    height: 100vh;
+    background: rgba(96, 102, 208, 0.7);
+    background-image: url("background.png");
+    background-position: center;
+    background-size: cover;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
