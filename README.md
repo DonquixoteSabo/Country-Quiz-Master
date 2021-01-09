@@ -63,5 +63,5 @@ $ npm start
 
 ## Contact
 
-- Website [your-website.com](https://donquixotesabo.github.io/Country-Quiz-Master/)
-- GitHub [@your-username](https://https://donquixotesabo.github.io/Country-Quiz-Master/)
+- Website [Country-Quiz-Master](https://donquixotesabo.github.io/Country-Quiz-Master/)
+- GitHub [Donquixote-Sabo](https://https://donquixotesabo.github.io/Country-Quiz-Master/)
