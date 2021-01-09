@@ -1,16 +1,67 @@
-# Hello this is my project from devChallenges.io
+<h1 align="center">Country Quiz</h1>
 
-## Rules:
+<div align="center">
+   Solution for a challenge from  <a href="http://devchallenges.io" target="_blank">Devchallenges.io</a>.
+</div>
 
-1. I can add my own funcions until I care about user stories: user stories:
+<div align="center">
+  <h3>
+    <a href="https://donquixotesabo.github.io/Country-Quiz-Master/">
+      Demo
+    </a>
+    <span> | </span>
+    <a href="https://github.com/DonquixoteSabo/Country-Quiz-Master">
+      Solution
+    </a>
+    <span> | </span>
+    <a href="https://devchallenges.io/challenges/ohgVTyJCbm5OZyTB2gNY">
+      Challenge
+    </a>
+  </h3>
+</div>
 
-- User story: I can see at least 2 types of question: a city is the capital of.. or a flag belong to country.
-- User story: I can see select an answer
-- User story: I can see if my answer is correct or incorrect
-- User story: When I answer correctly, I can move on to the next question
-- User story: When I answer incorrectly, I can see my results and try again
-- User story: I can try again
 
-2. I don't have to care that much about design but I like the original one so I will try to do it in the same way.
+## Table of Contents
 
-3. I will be using api https://restcountries.eu/
+- [Overview](#overview)
+- [Built With](#built-with)
+- [Features](#features)
+- [How to use](#how-to-use)
+- [Contact](#contact)
+
+## Overview
+
+- Where can I see your demo?
+On github pages. You have link at the bottom of this file
+- What was your experience?
+It was hard because it was the biggest API I ever work with but I really like hard challenges so I also have some fun
+- What have you learned/improved?
+I improved working with API what's very important as a pre-junior developer
+
+### Built With
+
+- [React](https://reactjs.org/)
+
+## Features
+
+This application/site was created as a submission to a [DevChallenges](https://devchallenges.io/challenges) challenge. The [challenge](https://devchallenges.io/challenges/ohgVTyJCbm5OZyTB2gNY) was to build an application to complete the given user stories.
+
+## How To Use
+
+To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
+
+```bash
+# Clone this repository
+$ git clone https://github.com/your-user-name/your-project-name
+
+# Install dependencies
+$ npm install
+
+# Run the app
+$ npm start
+```
+
+## Contact
+
+- Website [your-website.com](https://donquixotesabo.github.io/Country-Quiz-Master/)
+- GitHub [@your-username](https://https://donquixotesabo.github.io/Country-Quiz-Master/)
