@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Country-Quiz-Master/static/css/main.616f8dfc.chunk.css",
+    "main.js": "/Country-Quiz-Master/static/js/main.6b8632e2.chunk.js",
+    "main.js.map": "/Country-Quiz-Master/static/js/main.6b8632e2.chunk.js.map",
+    "runtime-main.js": "/Country-Quiz-Master/static/js/runtime-main.15898a9f.js",
+    "runtime-main.js.map": "/Country-Quiz-Master/static/js/runtime-main.15898a9f.js.map",
+    "static/js/2.c41841cd.chunk.js": "/Country-Quiz-Master/static/js/2.c41841cd.chunk.js",
+    "static/js/2.c41841cd.chunk.js.map": "/Country-Quiz-Master/static/js/2.c41841cd.chunk.js.map",
+    "static/js/3.d99519a2.chunk.js": "/Country-Quiz-Master/static/js/3.d99519a2.chunk.js",
+    "static/js/3.d99519a2.chunk.js.map": "/Country-Quiz-Master/static/js/3.d99519a2.chunk.js.map",
+    "index.html": "/Country-Quiz-Master/index.html",
+    "static/css/main.616f8dfc.chunk.css.map": "/Country-Quiz-Master/static/css/main.616f8dfc.chunk.css.map",
+    "static/js/2.c41841cd.chunk.js.LICENSE.txt": "/Country-Quiz-Master/static/js/2.c41841cd.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/Country-Quiz-Master/static/media/background.41dbc550.png",
+    "static/media/header.182b6171.svg": "/Country-Quiz-Master/static/media/header.182b6171.svg",
+    "static/media/result.d76bfdf8.svg": "/Country-Quiz-Master/static/media/result.d76bfdf8.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.15898a9f.js",
+    "static/js/2.c41841cd.chunk.js",
+    "static/css/main.616f8dfc.chunk.css",
+    "static/js/main.6b8632e2.chunk.js"
+  ]
+}
