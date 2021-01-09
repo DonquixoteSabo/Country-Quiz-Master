@@ -1,130 +1,191 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 
-import headerImg from '../../assets/header.svg';
-import {BASE_URL} from '../../utilities/constants';
-import {swap} from '../../utilities/swap';
-import {doesArrayHaveDuplicates} from '../../utilities/doesArrayHaveDuplicates';
+import QuestionPanel from './Questionpanel';
+import ResultPanel from './ResultPanel';
+
+import { BASE_URL, QUESTION_TYPES } from '../../utilities/constants';
+import { swap } from '../../utilities/swap';
+import { doesArrayHaveDuplicates } from '../../utilities/doesArrayHaveDuplicates';
+
+import '../../styles/QuizPanel.css';
+
 const QuizPanel = () => {
 
-    const [loading, setLoading] = useState(true);
-    
-    //All answers
-    const [answers, setAnswers] = useState([]);
+  const [questionType,setQuestionType] = useState(QUESTION_TYPES.FLAG);
 
-    const [correctAnswer, setCorrectAnswer] = useState('');
+  const [gameStart, setGameStart] = useState(true);
 
-    //Check if user answered 
-    const [isAnswered, setIsAnswered] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-    //Check if user answered properly or not
-    const [userPositiveResult, setUserPositiveResult] = useState(false);
+  //All answers
+  const [answers, setAnswers] = useState([]);
 
-    const getRandomCapitalQuestion = () => {
-        fetch(`${BASE_URL}?fields=name;capital;flag;numericCode`)
-        .then(response => response.json())
-        .then(data => {
-            let newAnswers = []
-            const item = data[Math.floor(Math.random() * data.length)];;
-            const newCorrectAnswer = {
-                id: item.numericCode,
-                capital: item.capital,
-                name: item.name,
-            }
-            setCorrectAnswer({
-                id: newCorrectAnswer.id, 
-                name: newCorrectAnswer.name,
-                capital: newCorrectAnswer.capital,
-            });
+  const [correctAnswer, setCorrectAnswer] = useState('');
 
-            //Generate 3 random answers
-            for(let i = 0; i<3; i++){
-                const random = Math.floor(Math.random() * data.length);
-                newAnswers.push({
-                    id: data[random].numericCode,
-                    name: data[random].name,
-                })
-            }
-            //concat random answers with correct answer
-            newAnswers = newAnswers.concat(newCorrectAnswer)
+  //Check if user answered
+  const [isAnswered, setIsAnswered] = useState(false);
 
-            //this function change elements order
-            swap(newAnswers, 3,  Math.floor(Math.random() * 3));
+  const [goodAnswers, setGoodAnswers] = useState(0);
 
-            setAnswers(newAnswers);
+  const getRandomFlagQuestion = () => {
+    fetch(`${BASE_URL}?fields=name;flag;numericCode`)
+      .then(response => response.json())
+      .then(data => {
+        let newAnswers = [];
+        const item = data[Math.floor(Math.random() * data.length)];
+        const newCorrectAnswer = {
+          id: item.numericCode,
+          flag: item.flag,
+          name: item.name,
+        };
+        setCorrectAnswer({
+          id: newCorrectAnswer.id,
+          name: newCorrectAnswer.name,
+          flag: newCorrectAnswer.flag,
+        });
 
-        })
-        .then(()=> setLoading(false))
-        .catch(err => console.log(err))
-        
-    }
-    const handleErrors = () => {
-        
-        if(loading === false){
-            const testingArray = answers.filter(answer => answer.length > 0)
-        
-            //some elements in api don't have all properties so we must check
-
-            // if array have 4 elements
-            if(testingArray.length !== 4){
-                getRandomCapitalQuestion()
-            } 
-            //check if we got capital name; 
-            if(correctAnswer.name === ''){
-                getRandomCapitalQuestion();
-            }
-            //if array doesnt have duplicates
-            if(doesArrayHaveDuplicates(testingArray)){
-                getRandomCapitalQuestion();
-            }
+        //Generate 3 random answers
+        for (let i = 0; i < 3; i++) {
+          const random = Math.floor(Math.random() * data.length);
+          newAnswers.push({
+            id: data[random].numericCode,
+            name: data[random].name,
+          });
         }
-    }
-    const chooseAnswer = (id) =>{
-        if(!isAnswered){
-        if(id === correctAnswer.id){
-            setUserPositiveResult(true);
-        } else{
-            setUserPositiveResult(false);
-        }
-    }
-        setIsAnswered(true);
-    }
+        //concat random answers with correct answer
+        newAnswers = newAnswers.concat(newCorrectAnswer);
 
-    const renderQuestion = () => {
-        setLoading(true)
-        getRandomCapitalQuestion();
-        handleErrors()
-        setIsAnswered(false)
+        //this function change elements order
+        swap(newAnswers, 3, Math.floor(Math.random() * 3));
+
+        setAnswers(newAnswers);
+      })
+      .then(() => setLoading(false))
+      .catch(err => console.log(err));
+  };
+
+  const getRandomCapitalQuestion = () => {
+    fetch(`${BASE_URL}?fields=name;capital;numericCode`)
+      .then(response => response.json())
+      .then(data => {
+        let newAnswers = [];
+        const item = data[Math.floor(Math.random() * data.length)];
+        const newCorrectAnswer = {
+          id: item.numericCode,
+          capital: item.capital,
+          name: item.name,
+        };
+        setCorrectAnswer({
+          id: newCorrectAnswer.id,
+          name: newCorrectAnswer.name,
+          capital: newCorrectAnswer.capital,
+        });
+
+        //Generate 3 random answers
+        for (let i = 0; i < 3; i++) {
+          const random = Math.floor(Math.random() * data.length);
+          newAnswers.push({
+            id: data[random].numericCode,
+            name: data[random].name,
+          });
+        }
+        //concat random answers with correct answer
+        newAnswers = newAnswers.concat(newCorrectAnswer);
+
+        //this function change elements order
+        swap(newAnswers, 3, Math.floor(Math.random() * 3));
+
+        setAnswers(newAnswers);
+      })
+      .then(() => setLoading(false))
+      .catch(err => console.log(err));
+  };
+  const handleErrors = () => {
+    if (loading === false) {
+      const testingArray = answers.filter(answer => answer.length > 0);
+
+      //some elements in api don't have all properties so we must check
+
+      // if array have 4 elements
+      if (testingArray.length !== 4) {
+        getRandomQuestionType()
+      }
+      //check if we got capital name;
+      if (correctAnswer.name === '' || correctAnswer.name) {
+        getRandomQuestionType()
+      }
+      //if array doesnt have duplicates
+      if (doesArrayHaveDuplicates(testingArray)) {
+        getRandomQuestionType()
+      }
     }
-    const handleSubmitButton = () =>{
-        renderQuestion();
+  };
+  const chooseAnswer = id => {
+    if (!isAnswered) {
+      document.getElementById(`id${correctAnswer.id}`).style.backgroundColor = '#60BF88';
+      if (id === correctAnswer.id) {
+        // setUserPositiveResult(true);
+        setGoodAnswers(prevState => prevState + 1);
+      } else {
+        // setUserPositiveResult(false);
+        setGameStart(false);
+        document.getElementById(`id${id}`).style.backgroundColor = '#EA8282';
+      }
     }
-    useEffect(()=>{
-        renderQuestion()
+    setIsAnswered(true);
+  };
+
+  const getRandomQuestionType = () => {
+      const random = Math.floor(Math.random() * 2);
+      if(random === 0){
+        setQuestionType(QUESTION_TYPES.CAPITAL);
+        getRandomCapitalQuestion()
+      }
+      else{
+        setQuestionType(QUESTION_TYPES.FLAG);
+        getRandomFlagQuestion()
+      }
+  }
+
+  const renderQuestion = () => {
+    setLoading(true);
+    getRandomQuestionType();
+    handleErrors();
+    setIsAnswered(false);
+  };
+
+  useEffect(() => {
+    renderQuestion();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[])
+  }, []);
 
-    return (
-        <div className="quiz-panel-container">
-                <h1 className="quiz-title">Country Quiz</h1>
-                <img src={headerImg} alt="" className="quiz-img"/>
-                <h2 className="quiz-question">
-                    {loading ? null :  `${correctAnswer.capital} is a capital of`}</h2>
-                <ul className="quiz-answers">
-                    {loading ? <div>Next question is loading...</div> : (
-                    // <li>
-                    answers.map(answer => <li onClick={()=>chooseAnswer(answer.id)} key={answer.id}>{answer.name}</li>)
-                    // </li>
-                    )}
-                </ul>
-                {isAnswered ? (
-                    userPositiveResult ? (
-                            <button onClick={handleSubmitButton}>next</button>
-                    ) : (
-                        <button onClick={handleSubmitButton}>try again</button>
-                    )
-                ) : null }
-        </div>
-    )
-}
- 
+  const handleResetButton = () =>{
+    renderQuestion();
+    setGameStart(true);
+    setGoodAnswers(0);
+  }
+
+  return (
+    <>
+      <h1 className='quiz-title'>Country Quiz</h1>
+      {isAnswered || gameStart ? (
+        <QuestionPanel
+        loading={loading}
+        correctAnswer={correctAnswer}
+        answers={answers}
+        chooseAnswer={chooseAnswer}
+        handleNextButton={renderQuestion}
+        isAnswered={isAnswered}
+        questionType={questionType}
+        />
+      ) : (
+          <ResultPanel 
+          handleResetButton={handleResetButton}
+          goodAnswers={goodAnswers}
+          />
+      )}
+    </>
+  );
+};
+
 export default QuizPanel;
