@@ -4,7 +4,7 @@
 
 1. I can add my own funcions until I care about user stories: user stories:
 
-- User story: I can see at least 2 types of question: a city is the capital of.. or a flag belong to country.. (I want to add questions about region)
+- User story: I can see at least 2 types of question: a city is the capital of.. or a flag belong to country.
 - User story: I can see select an answer
 - User story: I can see if my answer is correct or incorrect
 - User story: When I answer correctly, I can move on to the next question
